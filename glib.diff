@@ -1,0 +1,22 @@
+diff --git a/src/subclass/object.rs b/src/subclass/object.rs
+index a9e3a5e..43637d5 100644
+--- a/src/subclass/object.rs
++++ b/src/subclass/object.rs
+@@ -165,6 +165,17 @@ pub unsafe trait ObjectClassSubclassExt: Sized + 'static {
+         }
+     }
+ 
++    /// Override property.
++    fn override_property(&mut self, name: &str, id: u32) {
++        unsafe {
++            gobject_sys::g_object_class_override_property(
++                self as *mut Self as *mut _,
++                id,
++                name.to_glib_none().0,
++            );
++        }
++    }
++
+     /// Add a new signal to the subclass.
+     ///
+     /// This can be emitted later by `glib::Object::emit` and external code

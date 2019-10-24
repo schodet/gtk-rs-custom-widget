@@ -1,0 +1,42 @@
+diff --git a/src/subclass/drawing_area.rs b/src/subclass/drawing_area.rs
+new file mode 100644
+index 00000000..9ca4e690
+--- /dev/null
++++ b/src/subclass/drawing_area.rs
+@@ -0,0 +1,10 @@
++use glib::subclass::prelude::*;
++
++use super::widget::WidgetImpl;
++use DrawingAreaClass;
++
++pub trait DrawingAreaImpl: WidgetImpl + 'static {}
++
++unsafe impl<T: ObjectSubclass + DrawingAreaImpl> IsSubclassable<T> for DrawingAreaClass {
++    fn override_vfuncs(&mut self) {}
++}
+diff --git a/src/subclass/mod.rs b/src/subclass/mod.rs
+index d3e11a27..96e50109 100644
+--- a/src/subclass/mod.rs
++++ b/src/subclass/mod.rs
+@@ -8,8 +8,10 @@ pub mod bin;
+ pub mod box_;
+ pub mod container;
+ pub mod dialog;
++pub mod drawing_area;
+ pub mod event_box;
+ pub mod header_bar;
++pub mod scrollable;
+ pub mod stack;
+ pub mod widget;
+ pub mod window;
+@@ -21,8 +23,10 @@ pub mod prelude {
+     pub use super::box_::BoxImpl;
+     pub use super::container::ContainerImpl;
+     pub use super::dialog::DialogImpl;
++    pub use super::drawing_area::DrawingAreaImpl;
+     pub use super::event_box::EventBoxImpl;
+     pub use super::header_bar::HeaderBarImpl;
++    pub use super::scrollable::ScrollableInterface;
+     pub use super::stack::StackImpl;
+     pub use super::widget::WidgetImpl;
+     pub use super::window::WindowImpl;
