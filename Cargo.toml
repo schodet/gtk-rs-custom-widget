@@ -1,0 +1,20 @@
+[package]
+name = "gtk-rs-custom-widget"
+version = "0.1.0"
+authors = ["Nicolas Schodet <nico@ni.fr.eu.org>"]
+edition = "2018"
+
+[dependencies]
+glib = { git = "https://github.com/gtk-rs/glib" }
+#glib = { path = "../gtk-rs/glib" }
+glib-sys = { git = "https://github.com/gtk-rs/sys" }
+
+[dependencies.gtk]
+version = "0.7.0"
+features = ["v3_20"]
+
+[patch.crates-io]
+gtk = { path = "../gtk-rs/gtk" }
+
+[patch.'https://github.com/gtk-rs/glib']
+glib = { path = "../gtk-rs/glib" }
